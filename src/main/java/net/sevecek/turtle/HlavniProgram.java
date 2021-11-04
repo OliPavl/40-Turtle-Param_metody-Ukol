@@ -17,6 +17,9 @@ public class HlavniProgram {
         zofka.setLocation(1000.0, 400.0);
         nakresliMasinku();
 
+        zofka.setLocation(200.0, 400.0);
+        nakresliZmrzku();
+
     }
 
     public void nakresliKruh(double radius) {
@@ -136,4 +139,29 @@ public class HlavniProgram {
         nakresliRovnoramennyTrojuhelnik(90, 90);
 
     }
+
+    public void nakresliKornout(double velikostStrany, double uhelMeziRameny) {
+        double vnitrniUhelMeziZakladnouARamenem = (180 - uhelMeziRameny) / 2;
+
+        zofka.turnRight(uhelMeziRameny / 2);
+        zofka.move(velikostStrany);
+        zofka.turnLeft(180 - vnitrniUhelMeziZakladnouARamenem);
+        double delkaZakladny = vypocitejDelkuTretiStrany(velikostStrany, uhelMeziRameny);
+        zofka.move(delkaZakladny);
+        zofka.turnLeft(180 - vnitrniUhelMeziZakladnouARamenem);
+        zofka.move(velikostStrany);
+        zofka.turnLeft(180 - uhelMeziRameny);
+
+        zofka.penUp();
+        zofka.move(velikostStrany + 15);
+        zofka.turnLeft(uhelMeziRameny / 2);
+        zofka.penDown();
+
+    }
+
+    public void nakresliZmrzku() {
+        nakresliKornout(120, 45);
+        nakresliKruh(50);
+    }
+
 }
